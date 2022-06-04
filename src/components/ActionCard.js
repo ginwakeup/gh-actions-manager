@@ -3,8 +3,13 @@ import {useContext} from "react";
 import {RepositoryContext} from "../contexts/RepositoryContext";
 import {dispatchHandler} from "../lib/gh/utils";
 
+import {useDispatch} from 'react-redux'
+import {setAction} from "../redux/gh/actionsSlice";
+
 function ActionCard({action}) {
     const {repository, branch} = useContext(RepositoryContext);
+
+    const dispatch = useDispatch()
 
     return (
         <Container fluid>
@@ -20,10 +25,18 @@ function ActionCard({action}) {
                             branch,
                             action.id,
                         )
-                    }}>Dispatch</button>
+                    }}>Dispatch
+                    </button>
                 </Col>
                 <Col>
-                    <button>Runs</button>
+                    <button onClick={() => {
+                        dispatch(setAction({
+                            action: action,
+                            owner: repository.owner,
+                            repo: repository
+                        }))
+                    }}>Runs
+                    </button>
                 </Col>
             </Row>
         </Container>

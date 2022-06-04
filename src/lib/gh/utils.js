@@ -1,7 +1,8 @@
 import {Octokit} from "@octokit/rest";
 
 const octokit = new Octokit({
-    auth: process.env.REACT_APP_GH_PAT
+    auth: process.env.REACT_APP_GH_PAT,
+    accept: "application/vnd.github.v3+json"
 })
 
 export async function getRepositories(){
@@ -30,5 +31,13 @@ export async function getWorkflows(owner, repo){
     return await octokit.request(`GET /repos/{owner}/{repo}/actions/workflows`, {
         owner: owner.login,
         repo: repo
+    })
+}
+
+export async function getWorkflowRuns(owner, repo, workflow_id){
+    return await octokit.request('GET /repos/{owner}/{repo}/actions/workflows/{workflow_id}/runs', {
+        owner: owner.login,
+        repo: repo,
+        workflow_id: workflow_id
     })
 }

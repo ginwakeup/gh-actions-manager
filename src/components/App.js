@@ -1,10 +1,18 @@
 import Repos from "./Repos";
-import {Container} from "react-bootstrap";
+import ActionRuns from "./ActionRuns"
+import {Col, Container, Row} from "react-bootstrap";
 
 export default function App(){
     return (
-        <Container fluid>
-            <Repos/>
+        <Container>
+            <Row>
+                <Col>
+                    <Repos/>
+                </Col>
+                <Col>
+                    <ActionRuns/>
+                </Col>
+            </Row>
         </Container>
     );
 }

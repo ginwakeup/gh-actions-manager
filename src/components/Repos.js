@@ -1,15 +1,20 @@
-import useRepositories from "../hooks/useRepositories";
 import {Repo} from "./Repo";
 import {Accordion} from "react-bootstrap";
-import {REQUEST_STATUS} from "../lib/const/requestStatus";
+import {setRepositories} from "../redux/gh/repositoriesSlice";
+
+import { useSelector, useDispatch } from 'react-redux'
+import {getRepositories} from "../lib/gh/utils";
+import {useEffect} from "react";
 
 function Repos() {
-    const {
-        repositories,
-        requestStatus
-    } = useRepositories();
+    const repositories = useSelector((state) => state.repositories.value)
+    const dispatch = useDispatch()
 
-    if (requestStatus === REQUEST_STATUS.LOADING) return (<div>Loading...</div>)
+    useEffect(() => {
+        getRepositories().then(
+            response => dispatch(setRepositories(response.data))
+        )
+    },[dispatch])
 
     return (
         <Accordion defaultActiveKey={['0']}>
@@ -17,7 +22,7 @@ function Repos() {
                 {
                     Object.entries(repositories)
                         .map(([key, value]) =>
-                            <div className="card col-4 cardmin margintopbottom20" key={key}>
+                            <div key={key}>
                                 <Repo id={key} repo={value}/>
                             </div>
                         )
