@@ -1,7 +1,10 @@
 import Repos from "./Repos";
+import {Container} from "react-bootstrap";
 
 export default function App(){
     return (
-        <Repos/>
+        <Container fluid>
+            <Repos/>
+        </Container>
     );
 }

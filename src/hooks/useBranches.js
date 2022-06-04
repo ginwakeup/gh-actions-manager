@@ -1,17 +1,17 @@
 import {useEffect, useState} from "react";
 import {REQUEST_STATUS} from "../lib/const/requestStatus";
-import {getRepositories} from "../lib/gh/utils";
+import {getBranches} from "../lib/gh/utils";
 
-export default function useRepositories() {
-    const [repositories, setRepositories] = useState();
+export default function useBranches(repository) {
+    const [branches, setBranches] = useState();
     const [requestStatus, setRequestStatus] = useState(REQUEST_STATUS.LOADING);
     const [error, setError] = useState("");
 
     useEffect(() => {
         async function getData() {
             try {
-                const repositories = await getRepositories();
-                setRepositories(repositories.data);
+                const branches = await getBranches(repository.owner, repository.name);
+                setBranches(branches.data);
                 setRequestStatus(REQUEST_STATUS.SUCCESS);
 
             } catch (e) {
@@ -22,10 +22,10 @@ export default function useRepositories() {
         }
 
         getData();
-    }, []);
+    }, [repository.owner, repository.name]);
 
     return {
-        repositories,
+        branches,
         requestStatus,
         error
     };
