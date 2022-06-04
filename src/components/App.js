@@ -1,5 +1,5 @@
 import Repos from "./Repos";
-import ActionRuns from "./ActionRuns"
+import ActionRunsList from "./ActionRunsList"
 import {Col, Container, Row} from "react-bootstrap";
 
 export default function App(){
@@ -10,7 +10,7 @@ export default function App(){
                     <Repos/>
                 </Col>
                 <Col>
-                    <ActionRuns/>
+                    <ActionRunsList/>
                 </Col>
             </Row>
         </Container>

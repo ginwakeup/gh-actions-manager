@@ -5,7 +5,6 @@ export const actionsSlice = createSlice({
     initialState: {
         value: {
             action: {},
-            owner: {},
             repo: {}
         },
     },
