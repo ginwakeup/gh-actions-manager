@@ -1,6 +1,6 @@
 import Repositories from "./Repository/Repositories";
 import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import FiltersBar from "./Filters/FiltersBar";
 
 export default function App() {
     return (
@@ -8,8 +8,8 @@ export default function App() {
             <Navbar/>
             <div className="container-fluid overflow-auto">
                 <div className="row">
-                    <Sidebar/>
-                    <main className="col">
+                    <FiltersBar/>
+                    <main className="row">
                         <div
                             className="d-flex">
                             <div className="row m-5 overflow-scroll">
