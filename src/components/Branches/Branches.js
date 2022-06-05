@@ -1,6 +1,5 @@
-import {Dropdown} from "react-bootstrap";
 import {useContext} from "react";
-import {RepositoryContext} from "../contexts/RepositoryContext";
+import {RepositoryContext} from "../../contexts/RepositoryContext";
 import Branch from "./Branch";
 
 export function Branches({onClick}) {
@@ -8,17 +7,17 @@ export function Branches({onClick}) {
     if (branches == null) return (<></>)
 
     return (
-        <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+        <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                 Branches
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {
                     branches.map((branch) =>
                         <Branch branch={branch} key={branch.name} onClick={onClick}/>
                     )}
-            </Dropdown.Menu>
-        </Dropdown>
+            </ul>
+        </div>
     )
 }
