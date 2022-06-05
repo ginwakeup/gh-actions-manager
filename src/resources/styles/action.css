@@ -1,0 +1,9 @@
+.action-card {
+  background: #212121;
+  border-radius: 5px;
+}
+
+.action-run-card {
+  background: #1b1b1b;
+  margin-bottom: 12px;
+}

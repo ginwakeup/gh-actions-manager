@@ -1,43 +1,37 @@
-import {useSelector} from "react-redux";
 import ActionRunCard from "./ActionRunCard";
-import {REQUEST_STATUS} from "../lib/const/requestStatus";
-import {useEffect, useState} from "react";
-import {getWorkflowRuns} from "../lib/gh/utils";
+import {REQUEST_STATUS} from "../../lib/const/requestStatus";
+import {useEffect, useState, useContext} from "react";
+import {getWorkflowRuns} from "../../lib/gh/utils";
+import {RepositoryContext} from "../../contexts/RepositoryContext";
 
-function ActionRunsList() {
+function ActionRunsList({action}) {
     const [runs, setRuns] = useState();
     const [requestStatus, setRequestStatus] = useState(REQUEST_STATUS.LOADING);
-
-    const action = useSelector((state) => state.action.value)
-
+    const {repository} = useContext(RepositoryContext);
     useEffect(() => {
 
         async function getData() {
             try {
                 if (action != null){
-                    const actionFileNames = action.action.path.split("/")
+                    const actionFileNames = action.path.split("/")
                     const actionFileName = actionFileNames[actionFileNames.length - 1]
-                    const result = await getWorkflowRuns(action.repo.owner, action.repo.name, actionFileName)
+                    const result = await getWorkflowRuns(repository.owner, repository.name, actionFileName)
                     setRequestStatus(REQUEST_STATUS.SUCCESS);
                     setRuns(result.data.workflow_runs);
                 }
             } catch (e) {
-                console.log(e);
+                setRequestStatus(REQUEST_STATUS.FAILURE);
             }
         }
 
         getData();
     }, [action])
 
-    if (requestStatus === REQUEST_STATUS.LOADING) return (<div>Loading...</div>)
-    if (requestStatus === REQUEST_STATUS.FAILURE) return (<div>Failed.</div>)
+    if (requestStatus === REQUEST_STATUS.LOADING) return (<h6>Loading...</h6>)
+    if (requestStatus === REQUEST_STATUS.FAILURE) return (<h6>Can't fetch runs.</h6>)
 
-    console.log(runs);
     return (
         <div>
-            <div>Selected Action: {action.action.name}</div>
-            <div>Workflow Runs:</div>
-
             {
                 runs.map((run) =>
                     <ActionRunCard actionRun={run} key={run.id}/>
