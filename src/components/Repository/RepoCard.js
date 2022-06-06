@@ -4,14 +4,17 @@ import useRepository from "../../hooks/useRepository";
 import {REQUEST_STATUS} from "../../lib/const/requestStatus";
 import ActionList from "../Actions/ActionList";
 import {RepositoryProvider} from "../../contexts/RepositoryContext";
+import {useSelector} from "react-redux";
 
 export function RepoCard({repo}) {
+    const octokit = useSelector((state) => state.octo.value)
+
     const {
         actions,
         requestStatus,
         branches,
         branch,
-    } = useRepository(repo);
+    } = useRepository(octokit, repo);
 
     if (requestStatus === REQUEST_STATUS.LOADING) return (<div>Loading...</div>)
 
