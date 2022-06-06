@@ -28,7 +28,7 @@ function ActionRunsList({action}) {
         }
 
         getData();
-    }, [action])
+    }, [octokit, repository, action])
 
     if (requestStatus === REQUEST_STATUS.LOADING) return (<h6>Loading...</h6>)
     if (requestStatus === REQUEST_STATUS.FAILURE) return (<h6>Can't fetch runs.</h6>)

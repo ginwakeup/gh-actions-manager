@@ -17,7 +17,7 @@ export default function App() {
             }
         )
 
-    }, [dispatch])
+    }, [octokit, dispatch])
 
     return (
         <div>

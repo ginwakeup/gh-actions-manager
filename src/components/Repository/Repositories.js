@@ -18,7 +18,7 @@ function Repositories() {
         getRepositories(octokit).then(
             response => dispatch(setRepositories(response.data))
         )
-    }, [dispatch])
+    }, [octokit, dispatch])
 
     let filteredRepos = repositories;
 
