@@ -5,7 +5,7 @@ export default function Navbar(){
                     data-bs-target="#filtersBar" aria-expanded="false" aria-controls="filtersBar">
                 Filters
             </button>
-            <a className="navbar-brand col me-0 px-3" href="#">Github Actions Manager</a>
+            <a className="navbar-brand col me-0 px-3" href="#"><h2>Github Actions Manager</h2></a>
             <button className="navbar-toggler position-absolute d-md-none collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
