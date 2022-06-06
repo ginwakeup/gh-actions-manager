@@ -3,7 +3,7 @@ import {REQUEST_STATUS} from "../lib/const/requestStatus";
 import {getBranches, getWorkflows} from "../lib/gh/utils";
 
 
-export default function useRepository(repository) {
+export default function useRepository(octokit, repository) {
     const [actions, setActions] = useState();
     const [branches, setBranches] = useState();
     const [branch, setBranch] = useState();
@@ -13,11 +13,11 @@ export default function useRepository(repository) {
     useEffect(() => {
         async function getData() {
             try {
-                const act = await getWorkflows(repository.owner, repository.name)
+                const act = await getWorkflows(octokit, repository.owner, repository.name)
                 setRequestStatus(REQUEST_STATUS.SUCCESS);
                 setActions(act.data.workflows);
 
-                const brs = await getBranches(repository.owner, repository.name);
+                const brs = await getBranches(octokit, repository.owner, repository.name);
 
                 if (brs != null) {
                     setBranches(brs.data);
@@ -33,7 +33,7 @@ export default function useRepository(repository) {
         }
 
         getData();
-    }, [repository]);
+    }, [octokit, repository]);
 
     return {
         actions,
