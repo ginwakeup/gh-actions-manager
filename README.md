@@ -2,6 +2,8 @@
 
 GHAM is a Web Application that can be used to manage Organizations Actions.
 
+![Alt text](/documentation/images/home.png?raw=true "Home")
+
 ## Features
 Currently, the viewer only supports:
 - Visualize all your repositories (based on what PAT you provided)
