@@ -1,5 +1,5 @@
 import Repositories from "./Repository/Repositories";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import FiltersBar from "./Filters/FiltersBar";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,8 +15,7 @@ export default function App() {
             response => {
                 dispatch(setUser(response.data))
             }
-        )
-
+        );
     }, [octokit, dispatch])
 
     return (

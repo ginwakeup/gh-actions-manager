@@ -1,5 +1,5 @@
 import '../resources/styles/sidebar.css';
-import Organization from "./Filters/Organization";
+import Organizations from "./Filters/Organization";
 
 export default function Sidebar() {
     return (
@@ -14,7 +14,7 @@ export default function Sidebar() {
             <div className="offcanvas-body">
                 <div id="sidebar">
                     <div className="nav flex-column py-3">
-                        <Organization/>
+                        <Organizations/>
                         <li className="nav-item sidebar-item">
                             <input type="checkbox" className="btn-check" id="btn-check-2-outlined"/>
                             <label className="btn btn-outline-secondary"

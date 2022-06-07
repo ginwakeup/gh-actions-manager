@@ -7,6 +7,19 @@ export function initOcto(){
     })
 }
 
+export async function getOrganizations(octokit){
+    console.debug("GH API CALL: Getting Organizations For User")
+
+    return octokit.rest.orgs.listForAuthenticatedUser();
+}
+
+export async function getOrganizationRepos(octokit, orgName){
+    console.debug("GH API CALL: Getting Repos for Org")
+    return await octokit.request('GET /orgs/{orgName}/repos', {
+        orgName: orgName
+    })
+}
+
 export async function getAuthenticatedUser(octokit){
     console.debug("GH API CALL: Getting Authenticated User")
 
