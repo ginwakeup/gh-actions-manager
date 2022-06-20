@@ -4,9 +4,8 @@ import {getOrganizationRepos, getRepositories} from "../lib/gh/utils";
 import {useSelector} from "react-redux";
 
 
-export default function useRepositories() {
+export default function useRepositories(currentOrganization) {
     const [repos, setRepos] = useState();
-    const currentOrganization = useSelector((state) => state.organizations.value.current)
     const octokit = useSelector((state) => state.octo.value)
 
     const [requestStatus, setRequestStatus] = useState(REQUEST_STATUS.LOADING);
@@ -27,6 +26,7 @@ export default function useRepositories() {
                 else{
                     getOrganizationRepos(octokit, currentOrganization.login).then(
                         response => {
+                            console.log(response.data)
                             setRepos(response.data)
                             setRequestStatus(REQUEST_STATUS.SUCCESS);
                         }
@@ -41,7 +41,7 @@ export default function useRepositories() {
         }
 
         getData();
-    }, [octokit]);
+    }, [octokit, currentOrganization]);
 
     return {
         repos,

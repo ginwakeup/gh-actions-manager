@@ -7,21 +7,26 @@ import {REQUEST_STATUS} from "../../lib/const/requestStatus";
 function Repositories() {
     const filters = useSelector((state) => state.filters.value)
     const user = useSelector((state) => state.user.value)
+    const currentOrganization = useSelector((state) => state.organizations.value.current)
 
     const {
         repos,
         requestStatus,
         error
-    } = useRepositories()
+    } = useRepositories(currentOrganization)
 
     if (requestStatus === REQUEST_STATUS.LOADING) return (<h6>Loading...</h6>)
 
     let filteredRepos = repos;
 
-    if (filters.my_repos === true){
+    // Repositories are not filtered when an organization is selected.
+    if (currentOrganization === null){
         console.debug("MyRepos Filter is On.")
         filteredRepos = Object.fromEntries(Object.entries(filteredRepos).filter(([key, value]) => {
-            return value.owner.login === user.login
+            if (filters.my_repos === true){
+                return value.owner.login === user.login
+            }
+            return true
         }));
     }
     return (
