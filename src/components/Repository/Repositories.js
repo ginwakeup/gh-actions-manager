@@ -1,38 +1,38 @@
 import '../../resources/styles/repo.css';
-
-import {setRepositories} from "../../redux/gh/repositoriesSlice";
-
-import {useSelector, useDispatch} from 'react-redux'
-import {getRepositories} from "../../lib/gh/utils";
-import {useEffect} from "react";
+import {useSelector} from 'react-redux'
 import {RepoCard} from "./RepoCard";
+import useRepositories from "../../hooks/useRepositories";
+import {REQUEST_STATUS} from "../../lib/const/requestStatus";
 
 function Repositories() {
     const filters = useSelector((state) => state.filters.value)
-    const octokit = useSelector((state) => state.octo.value)
-    let repositories = useSelector((state) => state.repositories.value)
     const user = useSelector((state) => state.user.value)
-    const dispatch = useDispatch()
+    const currentOrganization = useSelector((state) => state.organizations.value.current)
 
-    useEffect(() => {
-        getRepositories(octokit).then(
-            response => dispatch(setRepositories(response.data))
-        )
-    }, [octokit, dispatch])
+    const {
+        repos,
+        requestStatus,
+        error
+    } = useRepositories(currentOrganization)
 
-    let filteredRepos = repositories;
+    if (requestStatus === REQUEST_STATUS.LOADING) return (<h6>Loading...</h6>)
 
-    if (filters.my_repos === true){
+    let filteredRepos = repos;
+
+    // Repositories are not filtered when an organization is selected.
+    if (currentOrganization === null){
         console.debug("MyRepos Filter is On.")
         filteredRepos = Object.fromEntries(Object.entries(filteredRepos).filter(([key, value]) => {
-            return value.owner.login === user.login
+            if (filters.my_repos === true){
+                return value.owner.login === user.login
+            }
+            return true
         }));
-        repositories = filteredRepos;
     }
     return (
         <div className="row flex-row flex-nowrap">
                 {
-                    Object.entries(repositories).map(([key, value]) =>
+                    Object.entries(filteredRepos).map(([key, value]) =>
                             <RepoCard id={key} repo={value} key={key}/>
                         )
                 }
