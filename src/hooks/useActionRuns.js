@@ -11,11 +11,8 @@ export default function useActionRuns() {
 
     const action = useSelector((state) => state.action.value)
     useEffect(() => {
-        console.log("hook")
-
         async function getData() {
             try {
-                console.log(action)
                 const actionFileNames = action.action.path.split("/")
                 const actionFileName = actionFileNames[actionFileNames.length - 1]
                 const result = await getWorkflowRuns(action.repo.owner, action.repo.name, actionFileName)

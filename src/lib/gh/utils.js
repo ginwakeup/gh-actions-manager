@@ -32,7 +32,7 @@ export async function getRepositories(octokit){
     return await octokit.rest.repos.listForAuthenticatedUser();
 }
 
-export async function dispatchHandler(octokit, owner, repo, branch, workflow_id) {
+export async function dispatchAction(octokit, owner, repo, branch, workflow_id) {
     console.debug("GH API CALL: Dispatching Action")
 
     return await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
@@ -42,6 +42,16 @@ export async function dispatchHandler(octokit, owner, repo, branch, workflow_id)
         ref: branch.name,
         inputs: {
         }
+    })
+}
+
+export async function rerunWorkflow(octokit, owner, repo, run_id) {
+    console.debug("GH API CALL: Rerun Workflow")
+
+    return await octokit.request('POST /repos/{owner}/{repo}/actions/runs/{run_id}/rerun', {
+        owner: owner.login,
+        repo: repo,
+        run_id: run_id,
     })
 }
 
