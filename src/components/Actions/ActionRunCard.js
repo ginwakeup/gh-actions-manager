@@ -1,4 +1,12 @@
+import {rerunWorkflow} from "../../lib/gh/utils";
+import {useSelector} from "react-redux";
+import {useContext} from "react";
+import {RepositoryContext} from "../../contexts/RepositoryContext";
+
 function ActionRunCard({actionRun}) {
+    const octokit = useSelector((state) => state.octo.value)
+    const {repository} = useContext(RepositoryContext);
+
     let conclusionBadge = null;
 
     switch (actionRun.conclusion) {
@@ -36,10 +44,24 @@ function ActionRunCard({actionRun}) {
     return (
         <div className="card action-run-card">
             <div className="card-body">
-                <div>Action Name: {actionRun.name}</div>
-                <div>Status: {statusBadge}</div>
-                <div>Updated At: {actionRun.updated_at}</div>
-                <div>Conclusion: {conclusionBadge} </div>
+                <div className="row">
+                    <div>Action Name: {actionRun.name}</div>
+                    <div>Status: {statusBadge}</div>
+                    <div>Updated At: {actionRun.updated_at}</div>
+                    <div>Conclusion: {conclusionBadge} </div>
+                </div>
+                <div className="d-flex flex-row-reverse">
+                    <button className="btn btn-primary m-2" onClick={() => {
+                        rerunWorkflow(
+                            octokit,
+                            repository.owner,
+                            repository.name,
+                            actionRun.id
+                        )
+                    }}>
+                        Rerun
+                    </button>
+                </div>
             </div>
         </div>
     )

@@ -14,7 +14,6 @@ export default function useRepositories(currentOrganization) {
     useEffect(() => {
         async function getData() {
             try {
-                console.log(currentOrganization)
                 if(currentOrganization === null){
                     getRepositories(octokit).then(
                         response => {
@@ -26,7 +25,6 @@ export default function useRepositories(currentOrganization) {
                 else{
                     getOrganizationRepos(octokit, currentOrganization.login).then(
                         response => {
-                            console.log(response.data)
                             setRepos(response.data)
                             setRequestStatus(REQUEST_STATUS.SUCCESS);
                         }
