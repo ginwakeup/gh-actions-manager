@@ -7,7 +7,7 @@ import {RepositoryProvider} from "../../contexts/RepositoryContext";
 import {useSelector} from "react-redux";
 
 export function RepoCard({repo}) {
-    const octokit = useSelector((state) => state.octo.value)
+    const octokit = useSelector((state) => state.core.octo)
 
     const {
         actions,

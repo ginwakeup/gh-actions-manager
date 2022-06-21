@@ -6,7 +6,7 @@ import {TreeItem} from "@mui/lab";
 import {ActionTreeItem} from "../Actions/ActionTreeItem";
 
 export function RepositoryTreeItem({repo, id, nodeId}) {
-    const octokit = useSelector((state) => state.octo.value)
+    const octokit = useSelector((state) => state.core.octo)
 
     const {
         actions,
@@ -22,7 +22,7 @@ export function RepositoryTreeItem({repo, id, nodeId}) {
             <TreeItem id={id} nodeId={nodeId} label={repo.name}>
                 {
                     Object.entries(actions).map(([k, value]) =>
-                        <ActionTreeItem id={k} key={k} nodeId={k} action={value} />
+                        <ActionTreeItem id={value.id.toString()} key={value.id.toString()} nodeId={value.id.toString()} action={value} />
                     )
                 }
             </TreeItem>

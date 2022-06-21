@@ -1,4 +1,4 @@
-import {setCurrentOrganization} from "../../redux/gh/organizationSlice";
+import {setCurrentOrganization} from "../../redux/core";
 import {useDispatch} from "react-redux";
 
 export default function OrganizationItem({organization}){

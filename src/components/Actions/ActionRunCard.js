@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {RepositoryContext} from "../../contexts/RepositoryContext";
 
 function ActionRunCard({actionRun}) {
-    const octokit = useSelector((state) => state.octo.value)
+    const octokit = useSelector((state) => state.core.octo)
     const {repository} = useContext(RepositoryContext);
 
     let conclusionBadge = null;

@@ -8,7 +8,7 @@ import {RepositoryTreeItem} from "./RepositoryTreeItem";
 
 
 export default function RepositoriesTreeView(){
-    const currentOrganization = useSelector((state) => state.organizations.value.current)
+    const currentOrganization = useSelector((state) => state.core.organizations.current)
     const {
         repos,
         requestStatus,
@@ -16,7 +16,6 @@ export default function RepositoriesTreeView(){
     } = useRepositories(currentOrganization)
 
     if (requestStatus === REQUEST_STATUS.LOADING) return (<h6>Loading...</h6>)
-
 
     return(
 

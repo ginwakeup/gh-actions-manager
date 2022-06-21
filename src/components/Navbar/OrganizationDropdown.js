@@ -2,17 +2,19 @@ import {useDispatch, useSelector} from "react-redux";
 import OrganizationItem from "./OrganizationItem";
 import {useEffect} from "react";
 import {getOrganizations} from "../../lib/gh/utils";
-import {setCurrentOrganization, setOrganizations} from "../../redux/gh/organizationSlice";
+import {setCurrentOrganization, setOrganizations} from "../../redux/core";
 
 function OrganizationDropdown() {
-    const octokit = useSelector((state) => state.octo.value)
-    const organizations = useSelector((state) => state.organizations.value.list);
-    const currentOrganization = useSelector((state) => state.organizations.value.current);
+    const octokit = useSelector((state) => state.core.octo)
+    const organizations = useSelector((state) => state.core.organizations.list);
+    const currentOrganization = useSelector((state) => state.core.organizations.current);
     const dispatch = useDispatch();
 
     useEffect(() => {
         getOrganizations(octokit).then(
-            response => dispatch(setOrganizations(response.data))
+            response => {
+                dispatch(setOrganizations(response.data))
+            }
         )
     }, [octokit, dispatch])
 

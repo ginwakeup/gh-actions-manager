@@ -19,8 +19,19 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 const preloadedState = {
-    octo: {
-        value: initOcto()
+    core: {
+        octo: initOcto(),
+        organizations: {
+            list: [],
+            current: null
+        }
+    },
+    ui: {
+        filters: {
+            value: {
+                "my_repos": false
+            }
+        }
     }
 }
 

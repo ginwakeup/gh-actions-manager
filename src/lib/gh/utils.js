@@ -1,32 +1,32 @@
 import {Octokit} from "@octokit/rest";
 
-export function initOcto(){
+export function initOcto() {
     return new Octokit({
         auth: process.env.REACT_APP_GH_PAT,
         accept: "application/vnd.github.v3+json"
     })
 }
 
-export async function getOrganizations(octokit){
+export async function getOrganizations(octokit) {
     console.debug("GH API CALL: Getting Organizations For User")
 
     return octokit.rest.orgs.listForAuthenticatedUser();
 }
 
-export async function getOrganizationRepos(octokit, orgName){
+export async function getOrganizationRepos(octokit, orgName) {
     console.debug("GH API CALL: Getting Repos for Org")
     return await octokit.request('GET /orgs/{orgName}/repos', {
         orgName: orgName
     })
 }
 
-export async function getAuthenticatedUser(octokit){
+export async function getAuthenticatedUser(octokit) {
     console.debug("GH API CALL: Getting Authenticated User")
 
     return await octokit.rest.users.getAuthenticated();
 }
 
-export async function getRepositories(octokit){
+export async function getRepositories(octokit) {
     console.debug("GH API CALL: Repositories")
 
     return await octokit.rest.repos.listForAuthenticatedUser();
@@ -40,8 +40,7 @@ export async function dispatchAction(octokit, owner, repo, branch, workflow_id) 
         repo: repo,
         workflow_id: workflow_id,
         ref: branch.name,
-        inputs: {
-        }
+        inputs: {}
     })
 }
 
@@ -64,7 +63,7 @@ export async function getBranches(octokit, owner, repo) {
     })
 }
 
-export async function getWorkflows(octokit, owner, repo){
+export async function getWorkflows(octokit, owner, repo) {
     console.debug("GH API CALL: Getting Workflows")
 
     return await octokit.request(`GET /repos/{owner}/{repo}/actions/workflows`, {
@@ -73,7 +72,7 @@ export async function getWorkflows(octokit, owner, repo){
     })
 }
 
-export async function getWorkflowRuns(octokit, owner, repo, workflow_id){
+export async function getWorkflowRuns(octokit, owner, repo, workflow_id) {
     console.debug("GH API CALL: Getting Workflow Runs")
 
     return await octokit.request('GET /repos/{owner}/{repo}/actions/workflows/{workflow_id}/runs', {
@@ -83,12 +82,29 @@ export async function getWorkflowRuns(octokit, owner, repo, workflow_id){
     })
 }
 
-export async function getContent(octokit, owner, repo, file_path){
+export async function getContent(octokit, owner, repo, path) {
     console.debug("GH API CALL: Getting file content")
 
-    return await octokit.request('GET /repos/{owner}/{repo}/actions/{file_path}', {
+    return await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: owner.login,
         repo: repo,
-        file_path: file_path
+        path: path
+    })
+}
+
+export async function updateContent(octokit, owner, repo, path, commit_message, content, sha) {
+    console.debug("GH API CALL: Update file content")
+
+    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        owner: owner.login,
+        repo: repo,
+        path: path,
+        message: commit_message,
+        committer: {
+            name: owner.login,
+            email: "iacopoantonelli@gmail.com"
+        },
+        content: content,
+        sha: sha
     })
 }

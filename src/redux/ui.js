@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const filterSlice = createSlice({
-    name: 'filters',
+export const uiSlice = createSlice({
+    name: 'co',
     initialState: {
         value: {
             "my_repos": true
-        },
+        }
     },
     reducers: {
         setFilters: (state, action) => {
@@ -14,6 +14,6 @@ export const filterSlice = createSlice({
     },
 })
 
-export const { setFilters } = filterSlice.actions
+export const { setFilters } = uiSlice.actions
 
-export default filterSlice.reducer
+export default uiSlice.reducer

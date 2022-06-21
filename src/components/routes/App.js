@@ -3,12 +3,12 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import Repositories from "../Repository/Repositories";
-import {setUser} from "../../redux/gh/userSlice";
+import {setUser} from "../../redux/core";
 import {getAuthenticatedUser} from "../../lib/gh/utils";
 import Layout from "../Layout";
 
 export default function App() {
-    const octokit = useSelector((state) => state.octo.value)
+    const octokit = useSelector((state) => state.core.octo)
     const dispatch = useDispatch()
 
     useEffect(() => {
