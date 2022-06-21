@@ -1,22 +1,35 @@
-import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+
 import OrganizationDropdown from "./OrganizationDropdown";
 
-export default function Navbar(){
-    const currentOrganization = useSelector((state) => state.organizations.current);
 
+export default function Navbar() {
     return (
-        <header className="navbar navbar-dark sticky-top bg-dark flex-nowrap p-0 shadow justify-content-between">
-            <button className="btn btn-secondary d-flex m-3" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#filtersBar" aria-expanded="false" aria-controls="filtersBar">
-                Filters
-            </button>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container-fluid">
+                <Link to="/" className="navbar-brand">Github Actions Manager</Link>
 
-            <a className="navbar-brand d-flex me-0 px-3" href="#"><h2>Github Actions Manager</h2></a>
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/">Repositories</Link>
+                    </li>
 
-            <div className="d-flex m-3">
-                <OrganizationDropdown/>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/actions_edit">Actions</Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <button className="btn btn-secondary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#filtersBar" aria-expanded="false" aria-controls="filtersBar">
+                            Filters
+                        </button>
+                    </li>
+                </ul>
+
+                <div className="d-flex m-3">
+                    <OrganizationDropdown/>
+                </div>
             </div>
-
-        </header>
+        </nav>
     );
 }
