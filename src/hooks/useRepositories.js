@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 export default function useRepositories(currentOrganization) {
     const [repos, setRepos] = useState();
-    const octokit = useSelector((state) => state.octo.value)
+    const octokit = useSelector((state) => state.core.octo)
 
     const [requestStatus, setRequestStatus] = useState(REQUEST_STATUS.LOADING);
     const [error, setError] = useState("");

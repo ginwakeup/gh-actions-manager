@@ -11,7 +11,7 @@ import {REQUEST_STATUS} from "../../lib/const/requestStatus";
 function ActionCard({action}) {
     const {repository, branch} = useContext(RepositoryContext);
     const [requestStatus, setRequestStatus] = useState(REQUEST_STATUS.LOADING);
-    const octokit = useSelector((state) => state.octo.value)
+    const octokit = useSelector((state) => state.core.octo)
     const [runs, setRuns] = useState();
 
     async function updateRuns(){

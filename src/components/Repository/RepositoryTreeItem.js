@@ -1,12 +1,11 @@
-import '../../resources/styles/repo.css';
-
 import useRepository from "../../hooks/useRepository";
 import {REQUEST_STATUS} from "../../lib/const/requestStatus";
-import ActionList from "../Actions/ActionList";
 import {RepositoryProvider} from "../../contexts/RepositoryContext";
 import {useSelector} from "react-redux";
+import {TreeItem} from "@mui/lab";
+import {ActionTreeItem} from "../Actions/ActionTreeItem";
 
-export function RepoCard({repo}) {
+export function RepositoryTreeItem({repo, id, nodeId}) {
     const octokit = useSelector((state) => state.core.octo)
 
     const {
@@ -20,16 +19,13 @@ export function RepoCard({repo}) {
 
     return (
         <RepositoryProvider repository={repo} branch={branch} branches={branches} actions={actions}>
-            <div className="col">
-                <div className="card repo-card text-white">
-                    <div className="card-body">
-                        <h4 className="card-title">{repo.name}</h4>
-                        <h6 className="card-text">{repo.description}</h6>
-                        <hr className="mt-5"/>
-                        <ActionList/>
-                    </div>
-                </div>
-            </div>
+            <TreeItem id={id} nodeId={nodeId} label={repo.name}>
+                {
+                    Object.entries(actions).map(([k, value]) =>
+                        <ActionTreeItem id={value.id.toString()} key={value.id.toString()} nodeId={value.id.toString()} action={value} />
+                    )
+                }
+            </TreeItem>
         </RepositoryProvider>
     );
 }

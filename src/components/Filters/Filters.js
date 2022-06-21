@@ -1,8 +1,8 @@
-import {setFilters} from "../../redux/gh/filterSlice";
+import {setFilters} from "../../redux/ui";
 import {useDispatch, useSelector} from "react-redux";
 
 export default function Filters() {
-    const filters = useSelector((state) => state.filters.value)
+    const filters = useSelector((state) => state.ui.filters.value)
     const dispatch = useDispatch()
 
     return (

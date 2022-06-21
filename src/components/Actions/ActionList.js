@@ -8,7 +8,9 @@ function ActionsList() {
     return (
         <div className="container m-0 p-0">
             <div className="row mb-4">
-                <span className="badge bg-primary rounded-pill">Actions</span>
+                <div className="col-8">
+                    <span className="badge bg-primary rounded-pill">Actions</span>
+                </div>
             </div>
 
             <div className="row">

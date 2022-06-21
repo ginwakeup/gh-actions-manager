@@ -1,16 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
-import repositoriesReducer from "./gh/repositoriesSlice"
-import filterReducer from "./gh/filterSlice"
-import userReducer from "./gh/userSlice"
-import octoReducer from "./gh/octoSlice"
-import organizationReducer from "./gh/organizationSlice";
+import coreReducer from "./core"
+import uiReducer from "./ui"
+import editorReducer from "./editor"
 
 const reducer = {
-    repositories: repositoriesReducer,
-    filters: filterReducer,
-    user: userReducer,
-    octo: octoReducer,
-    organizations: organizationReducer
+    core: coreReducer,
+    ui: uiReducer,
+    editor: editorReducer
 }
 
 export default function configureAppStore(preloadedState) {
