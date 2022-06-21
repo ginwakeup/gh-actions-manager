@@ -1,13 +1,16 @@
 import Layout from "../Layout";
+import RepositoriesTreeView from "../Repository/RepositoriesTreeView";
+import CodeEditor from "../Editor/CodeEditor";
 
 function ActionsEdit() {
     return (
         <Layout>
-            <div className="container m-0 p-0">
-                <div className="row mb-4">
-                    <div className="col-8">
-                        <span className="badge bg-primary rounded-pill">Actions Edit</span>
-                    </div>
+            <div className="row">
+                <div className="col-3">
+                    <RepositoriesTreeView/>
+                </div>
+                <div className="col">
+                    <CodeEditor/>
                 </div>
             </div>
         </Layout>
