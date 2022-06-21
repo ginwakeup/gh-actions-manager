@@ -9,7 +9,10 @@ Currently, the viewer only supports:
 - Visualize all your repositories (based on what PAT you provided)
 - Visualize all the runs for a selected Action
 - Dispatch a Selected Action
-
+- Visualize a tree with repositories of the selected Org and their actions
+  - Select an action and visualize it's code
+  - Edit the code and push it to GitHub.
+  
 ## Docker
 ### Environment
 You need to provide a PAT to access to your repositories.
