@@ -3,11 +3,8 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import Repositories from "../Repository/Repositories";
-import Navbar from "../Navbar/Navbar";
-import FiltersBar from "../Filters/FiltersBar";
 import {setUser} from "../../redux/gh/userSlice";
 import {getAuthenticatedUser} from "../../lib/gh/utils";
-import {BrowserRouter} from "react-router-dom";
 import Layout from "../Layout";
 
 export default function App() {
@@ -25,19 +22,14 @@ export default function App() {
     return (
         <div>
             <Layout>
-                <div className="container-fluid overflow-auto">
-                    <div className="row">
-                        <FiltersBar/>
-                        <main className="row">
-                            <div
-                                className="d-flex">
-                                <div className="row m-5 overflow-scroll">
-                                    <Repositories/>
-                                </div>
-                            </div>
-                        </main>
+                <main className="row">
+                    <div
+                        className="d-flex">
+                        <div className="row m-5 overflow-scroll">
+                            <Repositories/>
+                        </div>
                     </div>
-                </div>
+                </main>
             </Layout>
         </div>
     );

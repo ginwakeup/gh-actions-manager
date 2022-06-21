@@ -1,16 +1,15 @@
-import useRepository from "../../hooks/useRepository";
-import {REQUEST_STATUS} from "../../lib/const/requestStatus";
-import ActionList from "../Actions/ActionList";
-import {RepositoryProvider} from "../../contexts/RepositoryContext";
-import {useSelector} from "react-redux";
 import {TreeItem} from "@mui/lab";
+import {useDispatch} from "react-redux";
+import {setAction} from "../../redux/editor/editorSlice";
 
-export function ActionTreeItem({action, id, nodeId, key}) {
-    console.log(action)
+export function ActionTreeItem({action, id, nodeId}) {
+    const dispatch = useDispatch()
 
     return (
         <div>
-            <TreeItem id={id} nodeId={nodeId} key={key} label={action.name}/>
+            <TreeItem onClick={()=>{
+                dispatch(setAction(action))
+            }} id={id} nodeId={nodeId} label={action.name}/>
         </div>
     );
 }

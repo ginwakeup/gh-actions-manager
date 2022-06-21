@@ -82,3 +82,13 @@ export async function getWorkflowRuns(octokit, owner, repo, workflow_id){
         workflow_id: workflow_id
     })
 }
+
+export async function getContent(octokit, owner, repo, file_path){
+    console.debug("GH API CALL: Getting file content")
+
+    return await octokit.request('GET /repos/{owner}/{repo}/actions/{file_path}', {
+        owner: owner.login,
+        repo: repo,
+        file_path: file_path
+    })
+}
