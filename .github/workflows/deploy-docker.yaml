@@ -2,6 +2,7 @@ name: Docker Image CI
 
 on:
   workflow_dispatch:
+  release:
 
 env:
   REGISTRY: ghcr.io
