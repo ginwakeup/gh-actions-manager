@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     build:
-      context: .
+      context: ../
       target: development
     volumes:
       - ./src:/app/src
