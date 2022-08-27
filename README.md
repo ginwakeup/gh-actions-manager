@@ -1,5 +1,7 @@
 # GitHub Actions Manager
 
+[![Docker Image CI](https://github.com/ginwakeup/gh-actions-manager/actions/workflows/deploy-docker.yaml/badge.svg?branch=dev)](https://github.com/ginwakeup/gh-actions-manager/actions/workflows/deploy-docker.yaml)
+
 GHAM is a Web Application that can be used to manage Organizations Actions.
 
 ![Alt text](/documentation/images/home.png?raw=true "Home")
