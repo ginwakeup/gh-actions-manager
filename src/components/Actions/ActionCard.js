@@ -1,3 +1,8 @@
+/**
+ * An ActionCard represents the rendering element for an Action on GitHub.
+ * It also shows buttons to dispatch and show runs.
+ *
+ */
 import '../../resources/styles/action.css';
 
 import {useContext, useEffect, useState} from "react";
@@ -8,16 +13,28 @@ import ActionRunsList from "./ActionRunsList";
 import {useSelector} from "react-redux";
 import {REQUEST_STATUS} from "../../lib/const/requestStatus";
 
+/**
+ * ActionCard react component.
+ * @param action
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function ActionCard({action}) {
     const {repository, branch} = useContext(RepositoryContext);
     const [requestStatus, setRequestStatus] = useState(REQUEST_STATUS.LOADING);
     const octokit = useSelector((state) => state.core.octo)
     const [runs, setRuns] = useState();
 
+    /**
+     * Updates the list of Action runs by calling the GitHub API again.
+     * Unfortunately, due to the nature of GitHub, this might not always show what's running in real-time.
+     * @returns {Promise<void>}
+     */
     async function updateRuns(){
         const actionFileNames = action.path.split("/")
         const actionFileName = actionFileNames[actionFileNames.length - 1]
         const result = await getWorkflowRuns(octokit, repository.owner, repository.name, actionFileName)
+        console.debug(result);
         setRequestStatus(REQUEST_STATUS.SUCCESS);
         setRuns(result.data.workflow_runs);
     }

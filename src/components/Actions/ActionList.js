@@ -1,8 +1,16 @@
+/**
+ * The ActionList shows a list of Actions for a repository.
+ */
 import ActionCard from "./ActionCard";
 import {useContext} from "react";
 import {RepositoryContext} from "../../contexts/RepositoryContext";
 
-function ActionsList() {
+/**
+ * React Component for the Action List. For each Action in the repository, an ActionCard is displayed.
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function ActionList() {
     const {actions} = useContext(RepositoryContext);
 
     return (
@@ -25,4 +33,4 @@ function ActionsList() {
     )
 }
 
-export default ActionsList;
+export default ActionList;

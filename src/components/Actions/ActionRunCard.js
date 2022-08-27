@@ -1,8 +1,18 @@
+/**
+ * An ActionRunCard item displays information regarding a single run for an Action.
+ */
 import {rerunWorkflow} from "../../lib/gh/utils";
 import {useSelector} from "react-redux";
 import {useContext} from "react";
 import {RepositoryContext} from "../../contexts/RepositoryContext";
 
+/**
+ * The ActionRunCard component displays the current status of an Action on GitHub.
+ * Unfortunately, due to the delay in GitHub API, what's showed here might not be run-time.
+ * @param actionRun
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function ActionRunCard({actionRun}) {
     const octokit = useSelector((state) => state.core.octo)
     const {repository} = useContext(RepositoryContext);
