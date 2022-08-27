@@ -71,31 +71,37 @@ export default function CodeEditor() {
     )
 
     return (
-        <div className="row m-4">
-            <button className="btn btn-secondary mb-2" onClick={() => {
-                updateContent(
-                    octokit,
-                    repository.owner,
-                    repository.name,
-                    action.path,
-                    "Updating from GHAM",
-                    editor,
-                    fileSha
-                )
-            }} type="button">Push To GitHub</button>
+        <div className="col">
+            <div className="row m-4">
+                <Editor
+                    value={Buffer.from(editor, "base64").toString()}
+                    onValueChange={(code) => {
+                        const encodedCode = btoa(code)
+                        dispatch(setCode(encodedCode))
+                    }}
+                    highlight={hl => hightlightWithLineNumbers(hl, languages.plain)}
+                    padding={30}
+                    style={styles.root}
+                    textareaId="codeArea"
+                    className="editor"
+                />
+            </div>
 
-            <Editor
-                value={Buffer.from(editor, "base64").toString()}
-                onValueChange={(code) => {
-                    const encodedCode = btoa(code)
-                    dispatch(setCode(encodedCode))
-                }}
-                highlight={hl => hightlightWithLineNumbers(hl, languages.plain)}
-                padding={30}
-                style={styles.root}
-                textareaId="codeArea"
-                className="editor"
-            />
+            <div className="row m-4">
+                <div className="col m-0">
+                    <button className="btn btn-secondary mb-2" onClick={() => {
+                        updateContent(
+                            octokit,
+                            repository.owner,
+                            repository.name,
+                            action.path,
+                            "Updating from GHAM",
+                            editor,
+                            fileSha
+                        )
+                    }} type="button">Push To GitHub</button>
+                </div>
+            </div>
         </div>
     )
 }
