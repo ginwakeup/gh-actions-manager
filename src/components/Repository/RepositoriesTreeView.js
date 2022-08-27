@@ -1,3 +1,5 @@
+import '../../resources/styles/repositories-tree.css';
+
 import {useSelector} from "react-redux";
 import useRepositories from "../../hooks/useRepositories";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -20,7 +22,7 @@ export default function RepositoriesTreeView(){
     return(
 
         <TreeView
-            className="text-white"
+            className="repositories-tree"
             aria-label="file system navigator"
             defaultCollapseIcon={<ExpandMoreIcon />}
             defaultExpandIcon={<ChevronRightIcon />}
