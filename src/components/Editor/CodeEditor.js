@@ -15,12 +15,8 @@ import '../../resources/styles/editor.css';
 
 const styles = {
     root: {
-        background: '#1e1e1e',
-        boxSizing: 'border-box',
         fontFamily: '"Dank Mono", "Fira Code", monospace',
         ...dracula.plain,
-        overflow: 'auto !important',
-        border: '1px solid #2D2D2DFF'
     }
 }
 
