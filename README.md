@@ -15,7 +15,7 @@ Currently, the viewer only supports:
   - Select an action and visualize its code
   - Edit the code and push it to GitHub.
 
-![Alt text](/documentation/images/repositories.png?raw=true "Home")
+![Alt text](/documentation/images/repositories_tree.png?raw=true "Home")
 
 
 ## Execution
