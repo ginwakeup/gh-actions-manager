@@ -4,7 +4,7 @@
 
 GHAM is a Web Application that can be used to manage Organizations Actions.
 
-![Alt text](/documentation/images/home.png?raw=true "Home")
+![Alt text](/documentation/images/homepage.png?raw=true "Home")
 
 ## Features
 Currently, the viewer only supports:
