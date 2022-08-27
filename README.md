@@ -12,8 +12,11 @@ Currently, the viewer only supports:
 - Visualize all the runs for a selected Action
 - Dispatch a Selected Action
 - Visualize a tree with repositories of the selected Org and their actions
-  - Select an action and visualize it's code
+  - Select an action and visualize its code
   - Edit the code and push it to GitHub.
+
+![Alt text](/documentation/images/repositories.png?raw=true "Home")
+
 
 ## Execution
 `npm start`
