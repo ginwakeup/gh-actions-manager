@@ -14,7 +14,10 @@ Currently, the viewer only supports:
 - Visualize a tree with repositories of the selected Org and their actions
   - Select an action and visualize it's code
   - Edit the code and push it to GitHub.
-  
+
+## Execution
+`npm start`
+
 ## Docker
 ### Environment
 You need to provide a PAT to access to your repositories.
@@ -24,7 +27,7 @@ Create a .env file in the repository root before building and add your PAT:
 
 `REACT_APP_GH_PAT="<pat_here>"`
 
-then simply build and strunart the docker container.
+then simply build and start the docker container.
 
 ### Development
 
