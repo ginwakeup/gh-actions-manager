@@ -8,12 +8,12 @@ GHAM is a Web Application that can be used to manage Organizations Actions.
 
 ## Features
 Currently, the viewer only supports:
-- Visualize all your repositories (based on what PAT you provided)
-- Visualize all the runs for a selected Action
-- Dispatch a Selected Action
-- Visualize a tree with repositories of the selected Org and their actions
-  - Select an action and visualize its code
-  - Edit the code and push it to GitHub.
+- :octocat: Visualize all your repositories (based on what PAT you provided)
+- :car: Visualize all the runs for a selected Action
+- :rocket: Dispatch a Selected Action
+- :seedling: Visualize a tree with repositories of the selected Org and their actions
+  - :book: Select an action and visualize its code
+  - :pencil: Edit the code and push it to GitHub.
 
 ![Alt text](/documentation/images/repositories_tree.png?raw=true "Home")
 
